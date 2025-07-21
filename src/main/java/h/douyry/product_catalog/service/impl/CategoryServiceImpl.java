@@ -6,6 +6,7 @@ import h.douyry.product_catalog.repository.CategoryRepository;
 import h.douyry.product_catalog.service.CategoryService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -57,5 +58,10 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NoSuchElementException("La catégorie à supprimer n'existe pas");
         }
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Category> getAll() {
+        return categoryRepository.findAll();
     }
 }

@@ -8,6 +8,7 @@ import h.douyry.product_catalog.repository.ProductRepository;
 import h.douyry.product_catalog.service.ProductService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -82,4 +83,9 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+    // utiliser pour les tests Swagger
+    @Override
+    public List<Product> getAll() {
+        return productRepository.findAll();
+    }
 }

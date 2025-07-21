@@ -10,21 +10,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
-public class Product {
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartItem {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String name;
-    private double price;
-    private int stock;
-
     @ManyToOne
     @JsonIgnore
-    private Category category;
+    private Cart cart;
 
+    @ManyToOne
+    private Product product;
+
+    private int quantity;
+
+    public BigDecimal getTotalPrice() {
+        return BigDecimal.valueOf(product.getPrice()).multiply(BigDecimal.valueOf(quantity));
+    }
 
 }
